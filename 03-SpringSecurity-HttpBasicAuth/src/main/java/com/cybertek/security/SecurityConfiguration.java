@@ -14,25 +14,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	
-	
-	
-	
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     	
-        auth
-	        .inMemoryAuthentication()
-	        .withUser("admin").password("admin123").roles("ADMIN")
-	        .and()
-	        .withUser("mehmet").password("mehmet123").roles("USER");
-       
-        /*
+
         auth
         .inMemoryAuthentication()
         .withUser("admin").password(passwordEncoder().encode("admin123")).roles("ADMIN")
         .and()
         .withUser("mehmet").password(passwordEncoder().encode("mehmet123")).roles("USER");
-         */
+         
+        
+        
+        System.out.println("Admin Password :"+passwordEncoder().encode("admin123"));
     }
 
     @Override
@@ -45,11 +39,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     }
 	
 
-    /*
+    
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
     
-    */
+   
 }

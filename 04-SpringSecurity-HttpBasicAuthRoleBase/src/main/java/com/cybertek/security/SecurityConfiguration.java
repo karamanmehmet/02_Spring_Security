@@ -12,11 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
-	
-	
-	
-	
-	
+		
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     	
@@ -38,7 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .antMatchers("index.html").permitAll()
                 .antMatchers("/profile/**").authenticated()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/management/index").hasAnyRole("ADMIN","MANAGER")
+                .antMatchers("/management/**").hasAnyRole("ADMIN","MANAGER")
                 .and()
                 .httpBasic();
     }

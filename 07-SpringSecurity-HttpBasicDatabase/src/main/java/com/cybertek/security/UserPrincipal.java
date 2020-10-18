@@ -11,7 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.cybertek.model.User;
 
 public class UserPrincipal implements UserDetails {
-    private User user;
+    
+	private User user;
 
     public UserPrincipal(User user){
         this.user = user;
