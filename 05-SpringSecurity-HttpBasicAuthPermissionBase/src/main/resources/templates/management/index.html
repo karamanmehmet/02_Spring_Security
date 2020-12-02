@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:insert="fragments.html :: headerfiles"></head>
 <body>
 <header th:insert="fragments.html :: nav"></header>
 <!-- Page content goes here -->
 <div class="container">
     <p>This is Management\Index. Only people with role_management can see this</p>
+    
+    <button sec:authorize="hasAuthority('SUBMIT')"  name="userSubmit" value="submit" >Submit</button>
+    <button sec:authorize="hasAuthority('UPDATE')"  name="userUpdate" value="update" >Update</button>
+    <button sec:authorize="hasAuthority('DELETE')"  name="userDelete" value="delete" >Delete</button>
 </div>
 </body>
 </html>

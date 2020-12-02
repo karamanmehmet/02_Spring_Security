@@ -16,16 +16,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		auth
-			.inMemoryAuthentication()
-			.withUser("admin").password(passwordEncoder().encode("admin123")).roles("ADMIN").authorities("REST_TEST1", "REST_TEST2")
-			.and()
-			.withUser("yon").password(passwordEncoder().encode("yon123")).roles("USER").authorities("REST_TEST2")
-			.and()
-			.withUser("mehmet").password(passwordEncoder().encode("mehmet123")).roles("USER")
-			.and()
-			.withUser("manager").password(passwordEncoder().encode("manager123")).roles("MANAGER").authorities("REST_TEST1");
-
+        auth
+        .inMemoryAuthentication()
+        .withUser("admin").password(passwordEncoder().encode("admin123")).roles("ADMIN")
+        .and()
+        .withUser("mehmet").password(passwordEncoder().encode("mehmet123")).roles("USER")
+        .and()
+        .withUser("manager").password(passwordEncoder().encode("manager123")).roles("MANAGER").authorities("SUBMIT","DELETE","UPDATE")
+        .and()
+        .withUser("manager2").password(passwordEncoder().encode("manager123")).roles("MANAGER").authorities("SUBMIT","UPDATE");
 	}
 
 	@Override
@@ -35,7 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("index.html").permitAll()
 			.antMatchers("/profile/**").authenticated()
 			.antMatchers("/admin/**").hasRole("ADMIN")
-			.antMatchers("/management/index").hasAnyRole("ADMIN", "MANAGER")
+			.antMatchers("/management/index").hasAnyAuthority("SUBMIT")
 			.antMatchers("/api/public/test1").hasAuthority("REST_TEST1")
 			.antMatchers("/api/public/test2").hasAnyAuthority("REST_TEST2")
 			.and()

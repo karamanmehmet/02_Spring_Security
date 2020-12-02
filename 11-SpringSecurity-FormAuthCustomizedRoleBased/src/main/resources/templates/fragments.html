@@ -24,7 +24,7 @@
                 <li sec:authorize="isAuthenticated()" class="nav-item">
                     <a class="nav-link" href="#" th:href="@{~/profile/index}">Profile</a>
                 </li>
-                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                <li  class="nav-item">
                     <a class="nav-link" href="#" th:href="@{~/admin/index}">Admin</a>
                 </li>
                 <li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')" class="nav-item">
